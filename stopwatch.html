@@ -75,22 +75,37 @@
         console.log(mins.innerHTML);
 
         stop.disabled = "true"
-        pause.disabled = "true"
+        pause.disabled = "true";
 
         let restart = start.onclick = () => {
             start.disabled = true
             stop.disabled = false
             pause.disabled = false
             let timer = setInterval(() => {
+
                 sec.innerHTML = Number(sec.innerHTML) + Number(1);
-                console.log(sec.innerHTML)
-                if(sec.innerHTML >= 60){
-                    sec.innerHTML = 0 ;
-                    mins.innerHTML = Number(mins.innerHTML) + Number(1)
-                }else if(mins.innerHTML >= 60){
-                    mins.innerHTML = 0;
-                    hours.innerHTML = Number(hours.innerHTML) + Number(1)
+                
+                if(sec.innerHTML < 10){
+                    sec.innerHTML = "0" + sec.innerHTML;
                 }
+
+
+
+                else if(sec.innerHTML >= 60){
+                    sec.innerHTML = 0 ;
+                    mins.innerHTML = Number(mins.innerHTML) + Number(1);
+                     if(mins.innerHTML < 10){
+                    mins.innerHTML = "0" + mins.innerHTML;
+                    }
+                }
+                else if(mins.innerHTML >= 60){
+                    mins.innerHTML = 0;
+                    hours.innerHTML = Number(hours.innerHTML) + Number(1);
+                    if(hours.innerHTML <= 9){
+                    hours.innerHTML = "0" + hours.innerHTML;
+                    }
+                }
+
                 stop.onclick = () =>{
                     start.disabled = false
                     stop.disabled = true
